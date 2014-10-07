@@ -6,5 +6,10 @@
 meteor-platform
 autopublish
 insecure
+http
+mizzao:bootstrap-3
 jquery
+meteorhacks:npm
 
+
+npm-container

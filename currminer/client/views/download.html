@@ -1,0 +1,25 @@
+<template name="download">
+    <hr>
+    <button id="refreshData" type="button" class="btn btn-default btn-lg">Refresh Data</button>
+    <div>Number of Currencies in DB: {{currencyCount}}</div>
+    <hr>
+    <div>Select Currency and Frequency</div>
+    {{> requestForm}}
+</template>
+
+<template name="requestForm">
+    <form>
+        <select name="currencyNames">
+            {{#each currencyNames}}
+                <option>{{currencyName}}</option>
+            {{/each}}
+        </select>
+        <select name="dataFrequencies">
+            <option value="7d">7 day</option>
+            <option value="30d">30 day</option>
+            <option value="90d">90 day</option>
+            <option value="180d">180 day</option>
+            <option value="365d">365 day</option>
+        </select>
+    </form>
+</template>
