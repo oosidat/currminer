@@ -1,3 +1,5 @@
+Meteor.subscribe('currencyList');
+
 Template.download.events({
     'click #refreshData': function () {
         console.log("Refresh Button was clicked");
@@ -8,8 +10,26 @@ Template.download.events({
     }
 });
 
+Template.requestForm.events({
+	'submit form': function(event, template) {
+		console.log('Submitting form!');
+		var curr = template.find("#currencyNames").value;
+		var freq = template.find("#dataFrequencies").value;
+		var input = { "name" : curr, "frequency" : freq };
+		
+		Meteor.call('getValues', input, function(err, res) {
+			console.log(err);
+			console.log(res);
+		});
+		
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	}
+});
+
 Template.requestForm.currencyNames = function(){
-	return Currencies.find({});
+	return Currencies.find({}, {sort: {currencyOrder: 1}});
 };
 
 Template.download.currencyCount = function(){
