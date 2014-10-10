@@ -43,5 +43,7 @@ Meteor.methods({
     	var freq = inputjson["frequency"]
     	var path = "{0}{1}-{2}.json".format(dataUrl, curr, freq);
     	console.log(path);
+    	response = Meteor.http.get(path);
+    	console.log(JSON.stringify(response));
     }
 });
