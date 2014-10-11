@@ -12,18 +12,16 @@ Template.download.events({
 
 Template.requestForm.events({
 	'submit form': function(event, template) {
+		event.preventDefault();
+		event.stopPropagation();
 		console.log('Submitting form!');
 		var curr = template.find("#currencyNames").value;
 		var freq = template.find("#dataFrequencies").value;
 		var input = { "name" : curr, "frequency" : freq };
 		
-		Meteor.call('getValues', input, function(err, res) {
-			console.log(err);
-			console.log(res);
+		Meteor.call('getValues', input, function(error, result) {
+			console.log(JSON.stringify(result));
 		});
-		
-		event.preventDefault();
-		event.stopPropagation();
 		return false;
 	}
 });

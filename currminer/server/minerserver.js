@@ -39,15 +39,26 @@ Meteor.methods({
     },
 
     getValues: function(inputjson) {
+    	Future = Npm.require('fibers/future');
+      	var myFuture = new Future();
+
+    	var response;
     	var curr = inputjson["name"];
     	var freq = inputjson["frequency"]
     	var path = "{0}{1}-{2}.json".format(dataUrl, curr, freq);
-    	console.log(path);
-    	Meteor.http.call("GET", path, function(err, result) {
-    		var data = JSON.parse(result.content);
-    		response = parseForCsv(data);
-    		console.log(response);
+    	
+    	console.log("INFO: Calling ", path);
+    	
+    	Meteor.http.call("GET", path, function(error, result) {
+    		if (error) {
+    			myFuture.throw(error);
+    		} else {
+	    		var data = JSON.parse(result.content);
+	    		response = parseForCsv(data);
+	    		myFuture.return(response);
+    		}
     	});
+    	return myFuture.wait();
     }
 });
 
