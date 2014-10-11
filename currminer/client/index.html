@@ -3,8 +3,17 @@
 </head>
 
 <body>
-  <h1>CurrMiner</h1>
-  <h3>Crypto Currency Charts to CSV</h3>
+  {{> heading}}
 
   {{> download}}
 </body>
+
+<template name="heading">
+	<div class="nav-bar">
+		<span class="main-heading">CurrMiner</span>
+		<span class="version">0.1</span>
+		<span class="project-link"><a href="https://github.com/oosidat/currminer" target="_blank">Visit the Project on GitHub</a></span>
+	</div>
+	<h3>Crypto Currency Charts to CSV</h3>
+	<h6>Data from <a href="http://coinmarketcap.com/currencies/views/all/" target="_blank">Coinmarketcap.com</a></h6>
+</template>

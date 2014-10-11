@@ -1,5 +1,7 @@
 body {
 	padding: 50px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   	font-weight: 300;
 }
 
 h1 {
@@ -8,4 +10,31 @@ h1 {
 
 h3 {
 	font-size: 1.25em
+}
+
+.nav-bar{
+   position:fixed;
+   top:0;
+   left:0;
+   width:100%;
+   height:40px;
+   background-color: #4a4a4a;
+}
+
+.main-heading {
+	font-size: 25px;
+	margin-left: 15px;
+	color: lightgrey;
+}
+.version {
+	color: red;
+	font-weight: 100;
+	font-size: 10px;
+}
+
+.project-link {
+    color: white;
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
 }
