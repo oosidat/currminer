@@ -12,15 +12,16 @@ Template.download.events({
 
 Template.requestForm.events({
 	'submit form': function(event, template) {
-		event.preventDefault();
-		event.stopPropagation();
 		console.log('Submitting form!');
 		var curr = template.find("#currencyNames").value;
 		var freq = template.find("#dataFrequencies").value;
 		var input = { "name" : curr, "frequency" : freq };
 		
 		Meteor.call('getValues', input, function(error, result) {
-			console.log(JSON.stringify(result));
+			data = JSON.stringify(result);
+			csv = json2csv(data, true, true);
+      		event.target.href = "data:text/csv;charset=utf-8," + escape(csv);
+      		window.location.href = event.target.href;
 		});
 		return false;
 	}

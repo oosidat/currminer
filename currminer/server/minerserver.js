@@ -46,6 +46,7 @@ Meteor.methods({
     	var curr = inputjson["name"];
     	var freq = inputjson["frequency"]
     	var path = "{0}{1}-{2}.json".format(dataUrl, curr, freq);
+    	var today = new Date();
     	
     	console.log("INFO: Calling ", path);
     	
@@ -54,7 +55,7 @@ Meteor.methods({
     			myFuture.throw(error);
     		} else {
 	    		var data = JSON.parse(result.content);
-	    		response = parseForCsv(data);
+	    		response = parseForCsv(data, "{0}-{1}".format(curr, freq), today, path);
 	    		myFuture.return(response);
     		}
     	});
@@ -62,8 +63,13 @@ Meteor.methods({
     }
 });
 
-function parseForCsv(data) {
+function parseForCsv(data, name, dateToday, path) {
 	allData = [];
+	allData.push({
+		"item" : name, 
+		"date" : dateToday, 
+		"value" : path
+	});
 	for(var key in data) {
 		var val = data[key]
 		if (val instanceof Array) {
