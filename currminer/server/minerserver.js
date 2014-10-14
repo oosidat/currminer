@@ -1,3 +1,5 @@
+Kadira.connect('CQhGeb2rDge544iHS', '6f3b2590-22f7-4b80-9b07-8487ee0e2499');
+
 var cheerio = Meteor.npmRequire('cheerio');
 dataUrl = "http://coinmarketcap.com/static/generated_pages/currencies/datapoints/"
 
