@@ -51,6 +51,12 @@ Meteor.methods({
     	var today = new Date();
     	
     	console.log("INFO: Calling ", path);
+
+    	RequestHistory.insert({
+    		currencyName: curr,
+    		currencyFreq: freq,
+    		requestDate: today,
+    	});
     	
     	Meteor.http.call("GET", path, function(error, result) {
     		if (error) {
